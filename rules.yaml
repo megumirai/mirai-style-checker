@@ -1,0 +1,23 @@
+# 文章ルールチェッカーの設定
+# このファイルを編集すると、コード変更なしにチェック条件を変えられる
+
+teki_overuse:
+  threshold: 3
+
+forbidden_phrases:
+  list:
+    - しましょう
+    - してください
+
+bracket_overuse:
+  threshold: 5
+
+dramatic_expressions:
+  list:
+    - 圧倒的
+    - 驚愕
+    - 衝撃
+    - 劇的
+    - 鮮烈
+    - 絶望的
+    - 絶対的
