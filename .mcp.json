@@ -1,8 +1,8 @@
 {
   "mcpServers": {
     "mirai-style-checker": {
-      "command": "C:\\Users\\megum\\General-lab\\mirai-style-checker\\.venv\\Scripts\\python.exe",
-      "args": ["C:\\Users\\megum\\General-lab\\mirai-style-checker\\server.py"]
+      "command": "/Users/megumi/workspace/projects/mirai-style-checker/.venv/bin/python",
+      "args": ["/Users/megumi/workspace/projects/mirai-style-checker/server.py"]
     }
   }
 }
