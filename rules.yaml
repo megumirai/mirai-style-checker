@@ -35,3 +35,7 @@ dramatic_expressions:
     - 鮮烈
     - 絶望的
     - 絶対的
+
+colon_overuse:
+  # 段落あたりのコロン上限（URL・時刻・表の整列指定は数えない）
+  per_paragraph_limit: 1
