@@ -37,9 +37,25 @@ def _run_rule(rule_module, text: str) -> dict:
     config = RULES_CONFIG.get(rule_module.NAME, {})
     
     # ルールごとに引数の渡し方が違う
-    if rule_module.NAME in ("teki_overuse", "bracket_overuse"):
-        threshold = config.get("threshold", rule_module.DEFAULT_THRESHOLD)
-        return rule_module.check(text, threshold=threshold)
+    if rule_module.NAME == "teki_overuse":
+        return rule_module.check(
+            text,
+            per_paragraph_limit=config.get(
+                "per_paragraph_limit", rule_module.DEFAULT_PER_PARAGRAPH_LIMIT
+            ),
+            exclude_quoted=config.get("exclude_quoted", rule_module.DEFAULT_EXCLUDE_QUOTED),
+            exceptions=config.get("exceptions"),
+        )
+    elif rule_module.NAME == "bracket_overuse":
+        return rule_module.check(
+            text,
+            per_paragraph_limit=config.get(
+                "per_paragraph_limit", rule_module.DEFAULT_PER_PARAGRAPH_LIMIT
+            ),
+            emphasis_max_chars=config.get(
+                "emphasis_max_chars", rule_module.DEFAULT_EMPHASIS_MAX_CHARS
+            ),
+        )
     elif rule_module.NAME == "forbidden_phrases":
         phrases = config.get("list", rule_module.DEFAULT_PHRASES)
         return rule_module.check(text, phrases=phrases)
