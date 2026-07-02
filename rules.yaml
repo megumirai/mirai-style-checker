@@ -2,7 +2,19 @@
 # このファイルを編集すると、コード変更なしにチェック条件を変えられる
 
 teki_overuse:
-  threshold: 3
+  # writing-style.mdの原意「1段落に複数回は避ける」に基づく段落単位の上限
+  per_paragraph_limit: 2
+  # 引用（「…」内）は文体対象外として数えない
+  exclude_quoted: true
+  # 置換不能な固定語は数えない
+  exceptions:
+    - 目的
+    - 標的
+    - 的中
+    - 法的
+    - 性的
+    - 公的
+    - 私的
 
 forbidden_phrases:
   list:
@@ -10,7 +22,9 @@ forbidden_phrases:
     - してください
 
 bracket_overuse:
-  threshold: 5
+  # 強調カッコ（中身が短い「…」）のみ段落単位で数える。長い引用は正当な用法として除外
+  per_paragraph_limit: 2
+  emphasis_max_chars: 8
 
 dramatic_expressions:
   list:
