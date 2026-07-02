@@ -11,6 +11,7 @@ from rules import (
     forbidden_phrases,
     bracket_overuse,
     dramatic_expressions,
+    colon_overuse,
 )
 
 mcp = FastMCP("mirai-style-checker")
@@ -29,6 +30,7 @@ RULES = {
     forbidden_phrases.NAME: forbidden_phrases,
     bracket_overuse.NAME: bracket_overuse,
     dramatic_expressions.NAME: dramatic_expressions,
+    colon_overuse.NAME: colon_overuse,
 }
 
 
@@ -54,6 +56,13 @@ def _run_rule(rule_module, text: str) -> dict:
             ),
             emphasis_max_chars=config.get(
                 "emphasis_max_chars", rule_module.DEFAULT_EMPHASIS_MAX_CHARS
+            ),
+        )
+    elif rule_module.NAME == "colon_overuse":
+        return rule_module.check(
+            text,
+            per_paragraph_limit=config.get(
+                "per_paragraph_limit", rule_module.DEFAULT_PER_PARAGRAPH_LIMIT
             ),
         )
     elif rule_module.NAME == "forbidden_phrases":
@@ -113,8 +122,8 @@ def check_specific_rule(text: str, rule_name: str) -> dict:
 
     Args:
         text: The Japanese text to check
-        rule_name: The rule identifier (e.g., 'teki_overuse', 'forbidden_phrases', 
-                   'bracket_overuse', 'dramatic_expressions')
+        rule_name: The rule identifier (e.g., 'teki_overuse', 'forbidden_phrases',
+                   'bracket_overuse', 'dramatic_expressions', 'colon_overuse')
     """
     if not text:
         return {
